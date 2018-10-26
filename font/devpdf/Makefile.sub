@@ -94,7 +94,7 @@ DESC: DESC.in
 	fi
 	chmod +x util/BuildFoundries
 	echo "# foundry	ps name	psfile" > $(top_builddir)/font/devpdf/download
-	PATH="$(top_builddir)/src/utils/afmtodit:$(GROFF_PATH_SEPARATOR)$(PATH)" \
+	PATH="$(top_builddir)/src/utils/afmtodit$(RT_SEP)$(PATH)" \
 	  util/BuildFoundries $(top_builddir)/font/devpdf \
 	    '$(top_srcdir)/font/devps : $(top_builddir)/font/devps' \
 	   >> $(top_builddir)/font/devpdf/download
