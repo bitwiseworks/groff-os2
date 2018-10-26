@@ -25,7 +25,7 @@ use strict;
 my $prog = $0;
 $prog =~ s@.*/@@;
 
-my $groff_sys_fontdir = "@FONTDIR@";
+my $groff_sys_fontdir = '@FONTDIR@';
 
 use Getopt::Std;
 getopts('a:cd:e:f:i:kmno:svx');

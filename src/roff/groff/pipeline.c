@@ -103,6 +103,9 @@ static const char *xstrsignal(int);
 #include <stdlib.h>
 
 #include "nonposix.h"
+#ifndef _P_WAIT
+#define _P_WAIT P_WAIT
+#endif
 
 static const char *sh = "sh";
 static const char *cmd = "cmd";
