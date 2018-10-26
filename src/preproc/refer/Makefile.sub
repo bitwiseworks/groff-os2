@@ -47,7 +47,7 @@ YTABC=label.cpp
 NAMEPREFIX=$(g)
 
 .PHONY: install_data
-install_data: refer
+install_data: refer$(EXEEXT)
 	-test -d $(DESTDIR)$(referdir) \
 	  || $(mkinstalldirs) $(DESTDIR)$(referdir)
 
