@@ -169,7 +169,7 @@ oldfontdir=$(datasubdir)/oldfont
 localfontdir=$(dataprogramdir)/site-font
 
 # `legacyfontdir' is for compatibility with non-GNU troff.
-legacyfontdir=/usr/lib/font
+legacyfontdir=/@unixroot/usr/lib/font
 
 # `fontpath' says where to look for dev*/*.
 fontpath=$(localfontdir)$(RT_SEP)$(fontdir)$(RT_SEP)$(legacyfontdir)
@@ -237,7 +237,7 @@ tmac_an_prefix=\
 indexext=.i
 
 # Directory containing the default index for refer.
-indexdir=/usr/dict/papers
+indexdir=/@unixroot/usr/dict/papers
 
 # The filename (without suffix) of the default index for refer.
 indexname=Ind
