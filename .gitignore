@@ -1,0 +1,21 @@
+# ignore autoreconf files
+autom4te.cache/
+src/include/config.hin~
+src/libs/gnulib/autom4te.cache/
+src/libs/gnulib/config.h.in~
+
+# ignore regenerated files from autoreconv -fvi -I m4
+aclocal.m4
+configure
+
+# ignore regenerated files from autoreconv -fvi in gnulib
+src/libs/gnulib/Makefile.in
+src/libs/gnulib/aclocal.m4
+src/libs/gnulib/build-aux/config.guess
+src/libs/gnulib/build-aux/config.sub
+src/libs/gnulib/build-aux/depcomp
+src/libs/gnulib/build-aux/install-sh
+src/libs/gnulib/build-aux/missing
+src/libs/gnulib/configure
+src/libs/gnulib/lib/Makefile.in
+src/libs/gnulib/m4/Makefile.in
