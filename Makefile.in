@@ -166,7 +166,7 @@ fontdir=$(datasubdir)/font
 oldfontdir=$(datasubdir)/oldfont
 
 # `localfontdir' says where local fonts will be installed (as dev*/*).
-localfontdir=@sysconfdir@/site-font
+localfontdir=@sysconfdir@/groff/site-font
 
 # `legacyfontdir' is for compatibility with non-GNU troff.
 legacyfontdir=/@unixroot/usr/lib/font
@@ -178,10 +178,10 @@ fontpath=$(localfontdir)$(RT_SEP)$(fontdir)$(RT_SEP)$(legacyfontdir)
 tmacdir=$(datasubdir)/tmac
 
 # `systemtmacdir' says where to install platform-dependent macros.
-systemtmacdir=@sysconfdir@/site-tmac
+systemtmacdir=@sysconfdir@/groff/site-tmac
 
 # `localtmacdir' says where local files will be installed.
-localtmacdir=@sysconfdir@/site-tmac
+localtmacdir=@sysconfdir@/groff/site-tmac
 
 # `appresdir' says where to install the application resource file for
 # gxditview.
