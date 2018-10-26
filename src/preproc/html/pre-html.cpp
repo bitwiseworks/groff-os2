@@ -55,6 +55,11 @@
 
 #include "nonposix.h"
 
+#ifdef __OS2__ // using .exe is a bad idea in here, as symlinks are broken then
+#undef EXE_EXT
+#define EXE_EXT ""
+#endif
+
 #if 0
 # define DEBUGGING
 #endif
@@ -126,7 +131,11 @@
 
    in the CPPFLAGS.) */
 
+#  ifndef __OS2__
 #  define DEBUG_FILE_DIR /tmp
+#  else
+#  define DEBUG_FILE_DIR /@unixroot/var/temp
+#  endif
 # endif
 
 #endif /* not __MSDOS__ or _WIN32 */
