@@ -35,7 +35,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 # ifdef WORDS_BIGENDIAN
 #  define UNICODE "UTF-32BE"
 # else
+# ifndef __OS2__
 #  define UNICODE "UTF-32LE"
+# else
+#  define UNICODE "UNICODE"
+# endif
 # endif
 #endif
 
@@ -1018,7 +1022,9 @@ do_file(const char *filename)
   else {
     if (debug_flag)
       fprintf(stderr, "standard input:\n");
+#ifndef __OS2__ // breaks crlf translation badly, so don't set it
     SET_BINARY(fileno(stdin));
+#endif
     fp = stdin;
   }
   const char *BOM_encoding = get_BOM(fp, BOM, data);
@@ -1124,6 +1130,12 @@ main(int argc, char **argv)
   else {
     strncpy(default_encoding, locale_charset(), MAX_VAR_LEN - 1);
     default_encoding[MAX_VAR_LEN - 1] = 0;
+#ifdef __OS2__
+   // if we get a CP based codepage back, we change that to latin1
+   // as else the normal files are not converted right
+   if (strncmp(default_encoding, "CP", 2) == 0)
+      strcpy(default_encoding, "latin1");
+#endif
   }
 
   program_name = argv[0];
