@@ -32,7 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 // otherwise if this is set, create temporary files there
 #define TMPDIR_ENVVAR "TMPDIR"
 // otherwise, on MS-DOS or MS-Windows ...
-#if defined(__MSDOS__) || defined(_WIN32)
+#if defined(__MSDOS__) || defined(_WIN32) || defined(__OS2__)
 // if either of these is set, create temporary files there
 // (giving priority to WIN32_TMPDIR_ENVVAR)
 #define WIN32_TMPDIR_ENVVAR "TMP"
@@ -66,7 +66,7 @@ temp_init::temp_init()
   if (
       (tem = getenv(GROFF_TMPDIR_ENVVAR)) == NULL
       && (tem = getenv(TMPDIR_ENVVAR)) == NULL
-#if defined(__MSDOS__) || defined(_WIN32)
+#if defined(__MSDOS__) || defined(_WIN32) || defined(__OS2__)
       // If we didn't find a match for either of the above
       // (which are preferred, regardless of the host operating system),
       // and we are hosted on either MS-Windows or MS-DOS,
@@ -77,6 +77,17 @@ temp_init::temp_init()
      )
     // If we didn't find an environment spec fall back to this default.
     tem = DEFAULT_TMPDIR;
+
+#ifdef __OS2__ // ghostscript doesn't work with backslash, so we need slash
+  char *p;
+  p = (char *) tem;
+  while (*p != '\0') {
+    if (*p == '\\')
+      *p = '/';
+    p++;
+  }
+#endif
+
   size_t tem_len = strlen(tem);
   const char *tem_end = tem + tem_len - 1;
   int need_slash = strchr(DIR_SEPS, *tem_end) == NULL ? 1 : 0;
