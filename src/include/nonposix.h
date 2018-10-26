@@ -81,6 +81,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
    have it installed to begin with.  We want to give them some leeway.  */
 # ifdef __EMX__
 #  define getcwd(b,s)	_getcwd2(b,s)
+#  include <sys/socket.h>
+#  define pipe(pfd)	socketpair(AF_UNIX, SOCK_STREAM, 0, pfd)
 # else
 #  define BSHELL	(system_shell_name())
 #  define BSHELL_DASH_C	(system_shell_dash_c())
@@ -192,7 +194,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 # define O_BINARY	0
 #endif
 #ifndef BSHELL
+# ifdef __OS2__
+# define BSHELL		"/@unixroot/usr/bin/sh"
+# else
 # define BSHELL		"/bin/sh"
+# endif
 #endif
 #ifndef BSHELL_DASH_C
 # define BSHELL_DASH_C	"-c"
